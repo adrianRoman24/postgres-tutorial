@@ -1,0 +1,21 @@
+docker run --name my-postgres -e POSTGRES_PASSWORD=123456789 -p 5432:5432 -d postgres:15
+
+sudo apt-get update
+sudo apt install postgresql-client-common
+sudo apt-get install postgresql-client
+sudo apt install postgresql
+
+sudo apt-get install libpq-dev python-dev
+sudo pip3 install psycopg2
+
+psql -h localhost -p 5432 -U postgres
+CREATE DATABASE database;
+\c database;
+
+CREATE TABLE orders (
+	id serial NOT NULL PRIMARY KEY,
+	info json NOT NULL
+);
+
+INSERT INTO orders (info)
+VALUES('{ "customer": "John Doe", "items": {"product": "Beer","qty": 6}}');
